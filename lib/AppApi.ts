@@ -3,6 +3,7 @@ import { RestApi } from '@aws-cdk/aws-apigateway';
 import { UsersStack } from './stacks/UsersStack';
 import { HttpMethods } from '../types/http';
 import { HelloStack } from './stacks/HelloStack';
+import { DeployStack } from './stacks/DeployStack';
 
 export class AppApi extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -18,7 +19,9 @@ export class AppApi extends Stack {
     };
     const usersStack = new UsersStack(this, propsToPass);
     const helloStack = new HelloStack(this, propsToPass);
-    console.log('users methods: ', usersStack.methods.length);
-    console.log('hello methods: ', helloStack.methods.length);
+    new DeployStack(this, {
+      restApiId: api.restApiId,
+      methods: [...usersStack.methods, ...helloStack.methods],
+    });
   }
 }

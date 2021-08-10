@@ -2,7 +2,7 @@ import { IncomingMessage, RequestOptions } from 'http';
 import { ResultAsync } from 'neverthrow';
 import { request } from 'https';
 
-type HttpOptions = RequestOptions & { data?: string; };
+type HttpOptions = RequestOptions & { data?: string };
 
 enum Methods {
   DELETE = 'DELETE',

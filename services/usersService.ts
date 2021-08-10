@@ -1,3 +1,4 @@
+import { err, ok } from 'neverthrow';
 import { HttpMethods } from '../types/http';
 import makeHttpRequest from '../util/makeHttpRequest';
 
@@ -11,5 +12,8 @@ export async function getUsers() {
     method: HttpMethods.GET,
   });
 
-  return users.map((value) => value).mapErr((e) => e);
+  if (users.isErr()) {
+    return err(users.error);
+  }
+  return ok(users.value);
 }

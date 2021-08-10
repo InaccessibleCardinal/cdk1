@@ -20,7 +20,7 @@ export class UsersStack extends NestedStack {
     });
     const authLambda = new lambda.Function(this, 'authorizerLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset('functions/authorizer-lambda'),
+      code: lambda.Code.fromAsset('functions/__dist__/authorizerLambda'),
       handler: 'index.default',
     });
     const authorizer = new TokenAuthorizer(this, 'Authorizer', {
@@ -28,7 +28,7 @@ export class UsersStack extends NestedStack {
     });
     const usersLambda = new lambda.Function(this, 'UsersLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset('functions/users-lambda'),
+      code: lambda.Code.fromAsset('functions/__dist__/usersLambda'),
       handler: 'index.default',
     });
     const usersIntegration = new LambdaIntegration(usersLambda);

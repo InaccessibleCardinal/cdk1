@@ -15,7 +15,7 @@ export class HelloStack extends NestedStack {
     });
     const usersLambda = new lambda.Function(this, 'HelloLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset('functions/hello-lambda'),
+      code: lambda.Code.fromAsset('functions/__dist__/helloLambda'),
       handler: 'index.default',
     });
     const usersIntegration = new LambdaIntegration(usersLambda);

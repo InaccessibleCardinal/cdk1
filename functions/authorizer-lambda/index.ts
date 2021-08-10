@@ -3,7 +3,7 @@ import {
   APIGatewayAuthorizerResult,
 } from 'aws-lambda';
 
-type AuthorizerResponse = Promise<APIGatewayAuthorizerResult | string | Error>;
+type AuthorizerResponse = Promise<APIGatewayAuthorizerResult | string>;
 
 export default async function handler(
   event: APIGatewayTokenAuthorizerEvent
@@ -18,7 +18,7 @@ export default async function handler(
     case 'unauthorized':
       return 'Unauthorized';
     default:
-      return new Error('Error: Invalid token');
+      return 'Error: Invalid token';
   }
 }
 

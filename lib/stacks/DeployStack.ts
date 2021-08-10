@@ -1,4 +1,4 @@
-import { Deployment, RestApi, Stage } from '@aws-cdk/aws-apigateway';
+import { Deployment, RestApi } from '@aws-cdk/aws-apigateway';
 import { NestedStack, Construct } from '@aws-cdk/core';
 import { DeployStackProps } from '../../types/props';
 
@@ -12,6 +12,6 @@ export class DeployStack extends NestedStack {
     (props.methods ?? []).forEach((method) =>
       deployment.node.addDependency(method)
     );
-    new Stage(this, 'dev', { deployment });
+    (deployment as any).resource.stageName = 'dev';
   }
 }

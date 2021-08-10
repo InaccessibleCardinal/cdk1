@@ -9,6 +9,8 @@ type LambdaStackConfig = {
   endpoint: string;
   httpMethods: string[];
   lambdaName: string;
+  propsArg: EndpointStackProps;
+  scopeArg: Construct;
   stackName: string;
 };
 
@@ -18,6 +20,8 @@ export default function createLambdaStack({
   endpoint,
   httpMethods,
   lambdaName,
+  propsArg,
+  scopeArg,
   stackName,
 }: LambdaStackConfig) {
   class LambdaStack extends NestedStack {
@@ -43,5 +47,5 @@ export default function createLambdaStack({
     }
   }
 
-  return LambdaStack;
+  return new LambdaStack(scopeArg, propsArg);
 }
