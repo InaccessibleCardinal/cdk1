@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = (ctx) => {
     return {
-    mode: 'development',
+    mode: 'production',
     entry: {
       'authorizerLambda': './functions/authorizer-lambda/index.ts',
       'helloLambda': './functions/hello-lambda/index.ts',
