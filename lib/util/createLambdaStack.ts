@@ -33,15 +33,15 @@ export default function createLambdaStack({
         restApiId: props.restApiId,
         rootResourceId: props.rootResourceId,
       });
-      const usersLambda = new lambda.Function(this, lambdaName, {
+      const thisLambda = new lambda.Function(this, lambdaName, {
         runtime: lambda.Runtime.NODEJS_14_X,
         code: lambda.Code.fromAsset(codePath),
         handler: 'index.default',
       });
-      const usersIntegration = new LambdaIntegration(usersLambda);
+      const thisIntegration = new LambdaIntegration(thisLambda);
       const resource = api.root.addResource(endpoint);
       httpMethods.forEach((method) => {
-        const gwMethod = resource.addMethod(method, usersIntegration);
+        const gwMethod = resource.addMethod(method, thisIntegration);
         this.methods.push(gwMethod);
       });
     }
